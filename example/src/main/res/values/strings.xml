@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">liteLib</string>
+    <string name="md5_tittle">MD5加密</string>
 </resources>

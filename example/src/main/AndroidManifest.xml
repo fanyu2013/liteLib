@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".encryption.MD5Activity"></activity>
+        <activity android:name=".encryption.MD5Activity" />
+        <activity android:name=".ui.editText.DeleteEditTextActivity"></activity>
     </application>
 
 </manifest>

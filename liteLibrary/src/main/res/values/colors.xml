@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--原始颜色-->
+    <color name="green">#39CAAF</color>
+    <color name="deep_orange">#ff5722</color>
+    <color name="deep_orange_x">#E55B2D</color>
+    <color name="deep_orange_half_transparent">#80ff5722</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gray">#818181</color>
+    <color name="gray_background">#EEEEEE</color>
+
+    <!--EditText边框色-->
+    <color name="et_round">@color/gray</color>
+</resources>

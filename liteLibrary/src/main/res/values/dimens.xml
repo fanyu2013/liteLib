@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- 全局字号-->
+    <dimen name="text1_small">14sp</dimen>
+    <dimen name="text2_normal">16sp</dimen>
+    <dimen name="text3_big">18sp</dimen>
+    <dimen name="text3_huge">22sp</dimen>
+
+</resources>

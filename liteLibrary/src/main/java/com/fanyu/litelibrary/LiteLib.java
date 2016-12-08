@@ -8,7 +8,11 @@ import com.fanyu.litelibrary.net.Http;
  */
 
 public class LiteLib {
-    static Http http;
+    private static Http http;
+
+    public static void setHttp(Http http) {
+        LiteLib.http = http;
+    }
 
     public static Http getHttp() {
         return http;

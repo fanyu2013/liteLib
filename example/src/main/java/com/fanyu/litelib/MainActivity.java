@@ -3,14 +3,11 @@ package com.fanyu.litelib;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.fanyu.litelib.encryption.MD5Activity;
 import com.fanyu.litelib.ui.editText.DeleteEditTextActivity;
-import com.fanyu.litelibrary.DeleteEditText;
-import com.fanyu.litelibrary.util.TestUtil;
 
 public class MainActivity extends AppCompatActivity {
     public final String TAG = this.getClass().getSimpleName();

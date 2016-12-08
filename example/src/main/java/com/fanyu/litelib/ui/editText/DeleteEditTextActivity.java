@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.fanyu.litelib.R;
-import com.fanyu.litelibrary.DeleteEditText;
+import com.fanyu.litelibrary.view.DeleteEditText;
 
 public class DeleteEditTextActivity extends AppCompatActivity {
 

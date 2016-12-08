@@ -1,4 +1,4 @@
-package com.fanyu.litelibrary;
+package com.fanyu.litelibrary.view;
 
 import android.content.Context;
 import android.text.Editable;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.fanyu.litelibrary.R;
 
 /**
  *

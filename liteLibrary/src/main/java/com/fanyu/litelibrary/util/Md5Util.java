@@ -1,5 +1,7 @@
 package com.fanyu.litelibrary.util;
 
+import com.fanyu.litelibrary.LiteLib;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

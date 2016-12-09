@@ -1,6 +1,7 @@
 package com.fanyu.litelibrary;
 
 import com.fanyu.litelibrary.net.Http;
+import com.fanyu.litelibrary.util.InfoTool;
 
 /**
  *
@@ -9,4 +10,6 @@ import com.fanyu.litelibrary.net.Http;
 public abstract class AbstractLiteLib {
 
     public abstract Http Http();
+
+    public abstract InfoTool InfoTool();
 }

@@ -8,5 +8,5 @@ import com.fanyu.litelibrary.net.Http;
  */
 public abstract class AbstractLiteLib {
 
-    public abstract Http getHttp();
+    public abstract Http Http();
 }

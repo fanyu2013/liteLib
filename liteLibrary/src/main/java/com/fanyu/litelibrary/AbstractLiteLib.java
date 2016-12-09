@@ -9,7 +9,7 @@ import com.fanyu.litelibrary.util.InfoTool;
  */
 public abstract class AbstractLiteLib {
 
-    public abstract Http Http();
+    public abstract Http http();
 
-    public abstract InfoTool InfoTool();
+    public abstract InfoTool infoTool();
 }

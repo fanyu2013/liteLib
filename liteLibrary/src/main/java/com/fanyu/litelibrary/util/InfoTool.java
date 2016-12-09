@@ -17,5 +17,5 @@ public abstract class InfoTool {
 
     public abstract void closePrgDialog();
 
-    public abstract void showToast();
+    public abstract void showToast(Context context, String msg);
 }

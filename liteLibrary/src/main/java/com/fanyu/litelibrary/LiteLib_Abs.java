@@ -8,6 +8,6 @@ import com.fanyu.litelibrary.net.Request_I;
  */
 public abstract class LiteLib_Abs {
 
-    public abstract Request_I http();
+    public abstract Request_I request();
 
 }

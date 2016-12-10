@@ -3,6 +3,9 @@ package com.fanyu.litelibrary.util;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  *
  * Created by fanyu on 16/12/9.
@@ -18,4 +21,5 @@ public abstract class InfoTool {
     public abstract void closePrgDialog();
 
     public abstract void showToast(Context context, String msg);
+
 }

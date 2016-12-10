@@ -1,6 +1,7 @@
 package com.fanyu.litelibrary;
 
 import com.fanyu.litelibrary.net.Http;
+import com.fanyu.litelibrary.util.GsonUtil;
 import com.fanyu.litelibrary.util.InfoTool;
 
 /**
@@ -12,4 +13,6 @@ public abstract class AbstractLiteLib {
     public abstract Http http();
 
     public abstract InfoTool infoTool();
+
+    public abstract GsonUtil gsonUtil();
 }

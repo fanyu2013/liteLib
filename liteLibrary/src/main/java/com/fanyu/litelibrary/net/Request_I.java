@@ -9,7 +9,7 @@ import java.util.List;
  * Created by fanyu on 16/12/8.
  */
 
-public interface Http_Interface {
+public interface Request_I {
 
-    public void doReq(Context context, List<Object> params, String type, Req_Interface reqInterface);
+    public void doReq(Context context, List<Object> params, String type, ReqCallback_I reqInterface);
 }

@@ -1,6 +1,6 @@
 package com.fanyu.litelibrary;
 
-import com.fanyu.litelibrary.net.Http_Interface;
+import com.fanyu.litelibrary.net.Request_I;
 
 /**
  * 项目的控制中心
@@ -8,5 +8,5 @@ import com.fanyu.litelibrary.net.Http_Interface;
  */
 
 public class LiteObj {
-    public static Http_Interface httpInterface;
+    public static Request_I request_i;
 }

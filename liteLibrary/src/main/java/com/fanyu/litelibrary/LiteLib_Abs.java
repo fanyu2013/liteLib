@@ -1,6 +1,6 @@
 package com.fanyu.litelibrary;
 
-import com.fanyu.litelibrary.net.Http_Interface;
+import com.fanyu.litelibrary.net.Request_I;
 
 /**
  *
@@ -8,6 +8,6 @@ import com.fanyu.litelibrary.net.Http_Interface;
  */
 public abstract class LiteLib_Abs {
 
-    public abstract Http_Interface http();
+    public abstract Request_I http();
 
 }

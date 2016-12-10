@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fanyu.litelib.R;
-import com.fanyu.litelibrary.util.Md5Util;
+import com.fanyu.litelibrary.util.Md5Util_Abs;
 
 public class MD5Activity extends AppCompatActivity {
 
@@ -37,25 +37,25 @@ public class MD5Activity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_result.setText(Md5Util.parseStrToMd5L32(et_input.getText().toString()));
+                tv_result.setText(Md5Util_Abs.parseStrToMd5L32(et_input.getText().toString()));
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_result.setText(Md5Util.parseStrToMd5U32(et_input.getText().toString()));
+                tv_result.setText(Md5Util_Abs.parseStrToMd5U32(et_input.getText().toString()));
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_result.setText(Md5Util.parseStrToMd5L16(et_input.getText().toString()));
+                tv_result.setText(Md5Util_Abs.parseStrToMd5L16(et_input.getText().toString()));
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_result.setText(Md5Util.parseStrToMd5U16(et_input.getText().toString()));
+                tv_result.setText(Md5Util_Abs.parseStrToMd5U16(et_input.getText().toString()));
             }
         });
     }

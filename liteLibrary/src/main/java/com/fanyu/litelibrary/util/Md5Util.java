@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * Created by fanyu on 16/11/22.
  */
-public class Md5Util_Abs {
+public class Md5Util {
     /**
      * @param str
      * @return

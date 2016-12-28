@@ -3,9 +3,9 @@ package com.fanyu.litelibrary.util;
 import java.math.BigDecimal;
 
 /**
+ *
  * Created by fanyu on 16/12/12.
  */
-
 public class DoubleNumUtil {
 
     public static Double keep2(Double number) {

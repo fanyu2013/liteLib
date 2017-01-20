@@ -8,6 +8,8 @@ import com.fanyu.litelibrary.net.Request_I;
  */
 public abstract class LiteLib_Abs {
 
+    protected Request_I request_i;
+
     public abstract Request_I request();
 
 }

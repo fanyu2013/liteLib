@@ -1,4 +1,4 @@
-package com.fanyu.litelib.ui.editText;
+package com.fanyu.litelib.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -2,4 +2,12 @@
     <string name="app_name">liteLib</string>
     <string name="md5_tittle">MD5加密</string>
     <string name="del_et_tittle">可清空的EditText</string>
+
+    <!--ble-->
+    <string name="ble_open_bt">打开蓝牙</string>
+    <string name="ble_close_bt">关闭蓝牙</string>
+    <string name="ble_scan_bt">开始扫描</string>
+    <string name="btn_scan_list_bt">扫描列表</string>
+    <string name="unknown_device">未知设备</string>
+    <string name="ble_disconnect_bt">断开连接</string>
 </resources>

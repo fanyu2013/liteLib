@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fanyu.litelib.ui.editText.DeleteEditTextActivity">
+    tools:context="com.fanyu.litelib.view.DeleteEditTextActivity">
 
     <com.fanyu.litelibrary.view.DeleteEditText
         android:id="@+id/del_et"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fanyu.litelib.encryption.MD5Activity">
+    tools:context="com.fanyu.litelib.util.MD5Activity">
 
     <EditText
         android:id="@+id/et_input"

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ble"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fanyu.litelib.ble.BLEActivity">
+
+    <Button
+        android:id="@+id/btn_open_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ble_open_bt"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btn_scan_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ble_scan_bt"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btn_open_bt"
+        android:layout_toEndOf="@+id/btn_open_bt" />
+
+    <Button
+        android:id="@+id/btn_scan_list_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_scan_list_bt"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btn_scan_bt"
+        android:layout_toEndOf="@+id/btn_scan_bt" />
+
+    <Button
+        android:id="@+id/btn_disconnect_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ble_disconnect_bt"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btn_scan_list_bt"
+        android:layout_toEndOf="@+id/btn_scan_list_bt" />
+
+</RelativeLayout>

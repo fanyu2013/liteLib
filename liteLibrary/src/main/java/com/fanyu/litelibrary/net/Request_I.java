@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface Request_I {
 
-    public void doReq(Context context, List<Object> params, String type, ReqCallback_I reqInterface);
+    void doReq(Context context, List<Object> params, String type, ReqCallback_I reqInterface);
 }

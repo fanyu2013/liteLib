@@ -1,4 +1,4 @@
-package com.fanyu.litelib.encryption;
+package com.fanyu.litelib.util;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

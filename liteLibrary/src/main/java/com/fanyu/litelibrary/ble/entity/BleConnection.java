@@ -26,10 +26,19 @@ public class BleConnection {
     private BluetoothGattCallback mGattCallback = null;
     private BluetoothGatt mBluetoothGatt;
     private boolean isConnected = false;
+    private BleConnectionCallback callback;
 
     public BleConnection(BluetoothDevice device) {
         this.device = device;
         setGattCallback();
+    }
+
+    public void setBleCallback(BleConnectionCallback callback) {
+        this.callback = callback;
+    }
+
+    public BluetoothGatt getBluetoothGatt() {
+        return mBluetoothGatt;
     }
 
     @TargetApi(18)
@@ -42,18 +51,24 @@ public class BleConnection {
                     // Attempts to discover services after successful connection.
                     isConnected = true;
                     LogUtil.i(TAG,"连接成功,开始获取services");
+                    callback.connected();
                     mBluetoothGatt.discoverServices();
                 } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                     isConnected = false;
                     LogUtil.i(TAG,"断开连接: "+device.getName()+" "+device.getAddress());
+                    callback.disConnected();
+                    lite.ble().scan(true);
                 }
             }
 
             @Override
             public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                callback.onServicesDiscovered(gatt,status);
                 if (status == BluetoothGatt.GATT_SUCCESS) {
                     LogUtil.i(TAG, "serviceDiscover成功 = " + status);
-                    handleServices(gatt);
+                    if (!lite.isRelease()){
+                        printServices(gatt);
+                    }
                 } else {
                     LogUtil.i(TAG, "serviceDiscover失败 = " + status);
                 }
@@ -63,12 +78,15 @@ public class BleConnection {
             public void onCharacteristicRead(BluetoothGatt gatt,
                                              BluetoothGattCharacteristic characteristic,
                                              int status) {
+                callback.onCharacteristicRead(gatt,characteristic,status);
                 LogUtil.i(TAG, "onCharacteristicRead");
+
             }
 
             @Override
             public void onCharacteristicChanged(BluetoothGatt gatt,
                                                 BluetoothGattCharacteristic characteristic){
+                callback.onCharacteristicChanged(gatt,characteristic);
                 LogUtil.i(TAG,"onCharacteristicChanged");
             }
 
@@ -76,7 +94,7 @@ public class BleConnection {
     }
 
     @TargetApi(18)
-    private void handleServices(BluetoothGatt gatt) {
+    private void printServices(BluetoothGatt gatt) {
         List<BluetoothGattService> gattServices = gatt.getServices();
         if (gattServices == null) return;
 

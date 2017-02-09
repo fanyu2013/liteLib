@@ -25,6 +25,7 @@ public class BleConnection {
     private BluetoothDevice device;
     private BluetoothGattCallback mGattCallback = null;
     private BluetoothGatt mBluetoothGatt;
+    private boolean isConnected = false;
 
     public BleConnection(BluetoothDevice device) {
         this.device = device;
@@ -39,9 +40,11 @@ public class BleConnection {
             public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
                 if (newState == BluetoothProfile.STATE_CONNECTED) {
                     // Attempts to discover services after successful connection.
+                    isConnected = true;
                     LogUtil.i(TAG,"连接成功,开始获取services");
                     mBluetoothGatt.discoverServices();
                 } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                    isConnected = false;
                     LogUtil.i(TAG,"断开连接: "+device.getName()+" "+device.getAddress());
                 }
             }
@@ -178,9 +181,15 @@ public class BleConnection {
         // 重连
         if (mBluetoothGatt != null) {
             LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");
+            if (isConnected){
+                mBluetoothGatt.disconnect();
+            }
+
             if (mBluetoothGatt.connect()) {
+                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=true");
                 return true;
             } else {
+                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=false");
                 return false;
             }
         }

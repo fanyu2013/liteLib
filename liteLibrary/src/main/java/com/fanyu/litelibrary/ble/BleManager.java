@@ -49,6 +49,10 @@ public class BleManager implements BleManager_I {
         setScanCallback();
     }
 
+    public boolean isScanning() {
+        return isScanning;
+    }
+
     @TargetApi(18)
     @RequiresPermission(Manifest.permission.BLUETOOTH)
     private void setScanCallback() {

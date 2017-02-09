@@ -13,8 +13,11 @@ import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
 import com.fanyu.litelibrary.ble.BlueToothUtil;
+import com.fanyu.litelibrary.ble.event.ConnectionNewEvent;
 import com.fanyu.litelibrary.lite;
 import com.fanyu.litelibrary.util.LogUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class BleConnection {
     public BleConnection(BluetoothDevice device) {
         this.device = device;
         setGattCallback();
+        EventBus.getDefault().post(new ConnectionNewEvent(this.device));
     }
 
     public void setBleCallback(BleConnectionCallback callback) {

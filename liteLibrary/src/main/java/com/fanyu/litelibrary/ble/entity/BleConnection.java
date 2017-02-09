@@ -181,8 +181,10 @@ public class BleConnection {
         // 重连
         if (mBluetoothGatt != null) {
             LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");
+
             if (isConnected){
                 mBluetoothGatt.disconnect();
+                LogUtil.i(TAG,"断连接: mBluetoothGatt.disconnect();");
             }
 
             if (mBluetoothGatt.connect()) {
@@ -213,3 +215,5 @@ public class BleConnection {
         }
     }
 }
+
+

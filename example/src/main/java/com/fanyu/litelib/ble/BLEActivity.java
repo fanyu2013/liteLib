@@ -34,6 +34,7 @@ public class BLEActivity extends AppCompatActivity implements OnPermissionCallba
         setupView();
         setupListener();
         getPermission();
+        
     }
 
     private void setupView() {

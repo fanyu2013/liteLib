@@ -1,5 +1,6 @@
 package com.fanyu.litelibrary.ble.entity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -8,6 +9,7 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
+import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
 import com.fanyu.litelibrary.ble.BlueToothUtil;
@@ -42,6 +44,7 @@ public class BleConnection {
     }
 
     @TargetApi(18)
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     private void setGattCallback() {
         mGattCallback = new BluetoothGattCallback() {
 
@@ -190,7 +193,17 @@ public class BleConnection {
         return null;
     }
 
+    public static BleConnection getConnection(String address, List<BleConnection>connections){
+        for (int i=0; i<connections.size(); i++){
+            if (connections.get(i).getDevice().getAddress().equals(address)){
+                return connections.get(i);
+            }
+        }
+        return null;
+    }
+
     @TargetApi(18)
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     public boolean connect(){
         if (lite.ble().bluetoothAdapter() == null || device==null ||  device.getAddress() == null) {
             LogUtil.i(TAG, "BluetoothAdapter没有初始化 或者 device为null");

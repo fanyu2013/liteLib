@@ -54,19 +54,19 @@ public class BleConnection {
                     // Attempts to discover services after successful connection.
                     isConnected = true;
                     LogUtil.i(TAG,"连接成功,开始获取services");
-                    callback.connected();
+                    if (callback!=null) callback.connected();
                     mBluetoothGatt.discoverServices();
                 } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                     isConnected = false;
                     LogUtil.i(TAG,"断开连接: "+device.getName()+" "+device.getAddress());
-                    callback.disConnected();
+                    if (callback!=null) callback.disConnected();
                     lite.ble().scan(true);
                 }
             }
 
             @Override
             public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-                callback.onServicesDiscovered(gatt,status);
+                if (callback!=null) callback.onServicesDiscovered(gatt,status);
                 if (status == BluetoothGatt.GATT_SUCCESS) {
                     LogUtil.i(TAG, "serviceDiscover成功 = " + status);
                     if (!lite.isRelease()){
@@ -81,7 +81,7 @@ public class BleConnection {
             public void onCharacteristicRead(BluetoothGatt gatt,
                                              BluetoothGattCharacteristic characteristic,
                                              int status) {
-                callback.onCharacteristicRead(gatt,characteristic,status);
+                if (callback!=null) callback.onCharacteristicRead(gatt,characteristic,status);
                 LogUtil.i(TAG, "onCharacteristicRead");
 
             }
@@ -89,7 +89,7 @@ public class BleConnection {
             @Override
             public void onCharacteristicChanged(BluetoothGatt gatt,
                                                 BluetoothGattCharacteristic characteristic){
-                callback.onCharacteristicChanged(gatt,characteristic);
+                if (callback!=null) callback.onCharacteristicChanged(gatt,characteristic);
                 LogUtil.i(TAG,"onCharacteristicChanged");
             }
 

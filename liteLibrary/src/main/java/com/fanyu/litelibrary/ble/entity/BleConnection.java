@@ -36,7 +36,6 @@ public class BleConnection {
     public BleConnection(BluetoothDevice device) {
         this.device = device;
         setGattCallback();
-        EventBus.getDefault().post(new ConnectionNewEvent(this.device));
     }
 
     public void setBleCallback(BleConnectionCallback callback) {

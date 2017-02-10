@@ -16,6 +16,7 @@ import android.support.annotation.RequiresPermission;
 import com.fanyu.litelibrary.ble.entity.BleConnection;
 import com.fanyu.litelibrary.ble.entity.ScannedDevices;
 import com.fanyu.litelibrary.ble.event.BlueToothOpenEvent;
+import com.fanyu.litelibrary.ble.event.ConnectionNewEvent;
 import com.fanyu.litelibrary.lite;
 import com.fanyu.litelibrary.util.LogUtil;
 
@@ -139,6 +140,7 @@ public class BleManager implements BleManager_I {
             connection = BleConnection.getConnection(device,connections);
         }else {
             connection = new BleConnection(device);
+            EventBus.getDefault().post(new ConnectionNewEvent(device));
             connections.add(connection);
         }
         return connection.connect();

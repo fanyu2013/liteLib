@@ -140,8 +140,8 @@ public class BleManager implements BleManager_I {
             connection = BleConnection.getConnection(device,connections);
         }else {
             connection = new BleConnection(device);
-            EventBus.getDefault().post(new ConnectionNewEvent(device));
             connections.add(connection);
+            EventBus.getDefault().post(new ConnectionNewEvent(device));
         }
         return connection.connect();
     }

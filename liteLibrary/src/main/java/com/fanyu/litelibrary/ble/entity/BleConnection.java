@@ -212,6 +212,7 @@ public class BleConnection {
             LogUtil.i(TAG, "BluetoothAdapter没有初始化 或者 device为null");
             return false;
         }
+        callback.startToConnect();
         // 重连
         if (mBluetoothGatt != null) {
             LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");

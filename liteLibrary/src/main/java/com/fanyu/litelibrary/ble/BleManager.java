@@ -45,6 +45,7 @@ public class BleManager implements BleManager_I {
     //connection
     List<BleConnection> connections = new ArrayList<>();
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     private BleManager() {
         mHandler = new Handler();
         setScanCallback();
@@ -61,12 +62,14 @@ public class BleManager implements BleManager_I {
         mLeScanCallback =
                 new BluetoothAdapter.LeScanCallback() {
                     @Override
+                    @RequiresPermission(Manifest.permission.BLUETOOTH)
                     public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
                         scannedDevices.add(device);
                     }
                 };
     }
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     public static void registerInstance() {
         if (instance == null) {
             synchronized (lock) {
@@ -109,6 +112,8 @@ public class BleManager implements BleManager_I {
             LogUtil.i(TAG,"开始扫描");
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
+
+                @RequiresPermission(Manifest.permission.BLUETOOTH_ADMIN)
                 public void run() {
                     isScanning = false;
                     mBluetoothAdapter.stopLeScan(mLeScanCallback);
@@ -134,6 +139,7 @@ public class BleManager implements BleManager_I {
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     public boolean connect(BluetoothDevice device) {
         BleConnection connection;
         if (BleConnection.contains(device,connections)){

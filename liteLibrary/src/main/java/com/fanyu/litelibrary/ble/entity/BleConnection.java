@@ -268,7 +268,7 @@ public class BleConnection {
     }
 
     @TargetApi(18)
-    protected BluetoothGattCharacteristic getCharacter(String serviceUUID,String charUUID){
+    public BluetoothGattCharacteristic getCharacter(String serviceUUID,String charUUID){
         BluetoothGattService service = mBluetoothGatt.getService(
                 UUID.fromString(serviceUUID));
         if (service!=null){
@@ -279,7 +279,7 @@ public class BleConnection {
     }
 
     @TargetApi(18)
-    protected boolean setCharacteristicNotification(BluetoothGattCharacteristic characteristic,
+    public boolean setCharacteristicNotification(BluetoothGattCharacteristic characteristic,
                                                   boolean enabled){
         if (characteristic==null || lite.ble().bluetoothAdapter() == null || mBluetoothGatt == null) {
             return false;

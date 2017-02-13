@@ -12,6 +12,7 @@ import android.bluetooth.BluetoothProfile;
 import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
+import com.fanyu.litelibrary.ble.BleSetting;
 import com.fanyu.litelibrary.ble.BlueToothUtil;
 import com.fanyu.litelibrary.ble.event.ConnectionNewEvent;
 import com.fanyu.litelibrary.lite;
@@ -20,6 +21,7 @@ import com.fanyu.litelibrary.util.LogUtil;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -33,6 +35,7 @@ public class BleConnection {
     private boolean isConnected = false;
     private BleConnectionCallback callback;
 
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
     public BleConnection(BluetoothDevice device) {
         this.device = device;
         setGattCallback();
@@ -52,6 +55,7 @@ public class BleConnection {
         mGattCallback = new BluetoothGattCallback() {
 
             @Override
+            @RequiresPermission(Manifest.permission.BLUETOOTH)
             public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
                 if (newState == BluetoothProfile.STATE_CONNECTED) {
                     // Attempts to discover services after successful connection.
@@ -101,6 +105,7 @@ public class BleConnection {
 
     @TargetApi(18)
     private void printServices(BluetoothGatt gatt) {
+        if (!BleSetting.willPrintChars)return;
         List<BluetoothGattService> gattServices = gatt.getServices();
         if (gattServices == null) return;
 
@@ -212,24 +217,26 @@ public class BleConnection {
             LogUtil.i(TAG, "BluetoothAdapter没有初始化 或者 device为null");
             return false;
         }
-        callback.startToConnect();
-        // 重连
-        if (mBluetoothGatt != null) {
-            LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");
-
-            if (isConnected){
-                mBluetoothGatt.disconnect();
-                LogUtil.i(TAG,"断连接: mBluetoothGatt.disconnect();");
-            }
-
-            if (mBluetoothGatt.connect()) {
-                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=true");
-                return true;
-            } else {
-                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=false");
-                return false;
-            }
+        if (callback!=null){
+            callback.startToConnect();
         }
+        // 重连
+//        if (mBluetoothGatt != null) {
+//            LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");
+//
+//            if (isConnected){
+//                mBluetoothGatt.disconnect();
+//                LogUtil.i(TAG,"断连接: mBluetoothGatt.disconnect();");
+//            }
+//
+//            if (mBluetoothGatt.connect()) {
+//                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=true");
+//                return true;
+//            } else {
+//                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=false");
+//                return false;
+//            }
+//        }
         //第一次连接
         final BluetoothDevice device = lite.ble().bluetoothAdapter().getRemoteDevice(this.device.getAddress());
         if (device == null) {
@@ -249,6 +256,43 @@ public class BleConnection {
             mBluetoothGatt.disconnect();
         }
     }
+
+    @TargetApi(18)
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
+    public void reConnect(){
+        if (mBluetoothGatt!=null){
+            mBluetoothGatt.disconnect();
+            mBluetoothGatt.close();
+        }
+        connect();
+    }
+
+    @TargetApi(18)
+    protected BluetoothGattCharacteristic getCharacter(String serviceUUID,String charUUID){
+        BluetoothGattService service = mBluetoothGatt.getService(
+                UUID.fromString(serviceUUID));
+        if (service!=null){
+            return service.getCharacteristic(UUID.fromString(charUUID));
+        }else {
+            return null;
+        }
+    }
+
+    @TargetApi(18)
+    protected boolean setCharacteristicNotification(BluetoothGattCharacteristic characteristic,
+                                                  boolean enabled){
+        if (characteristic==null || lite.ble().bluetoothAdapter() == null || mBluetoothGatt == null) {
+            return false;
+        }
+        boolean status = mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+        return status;
+    }
+
+    @TargetApi(18)
+    protected void writeDescriptor(BluetoothGattDescriptor desc) {
+        mBluetoothGatt.writeDescriptor(desc);
+    }
+
 }
 
 

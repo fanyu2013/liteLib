@@ -325,6 +325,11 @@ public class BleConnection {
         return mBluetoothGatt.writeCharacteristic(characteristic);
     }
 
+    @TargetApi(18)
+    public boolean readCharacteristic(BluetoothGattCharacteristic characteristic) {
+        return mBluetoothGatt.readCharacteristic(characteristic);
+    }
+
 }
 
 

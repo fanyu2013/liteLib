@@ -2,6 +2,7 @@ package com.fanyu.litelibrary.ble.entity;
 
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
+import android.bluetooth.BluetoothGattDescriptor;
 
 /**
  *
@@ -17,4 +18,7 @@ public interface BleConnectionCallback {
                               int status);
     void onCharacteristicChanged(BluetoothGatt gatt,
                             BluetoothGattCharacteristic characteristic);
+    void onCharacteristicWrite(BluetoothGatt gatt,
+                               BluetoothGattCharacteristic characteristic, int status);
+    void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status);
 }

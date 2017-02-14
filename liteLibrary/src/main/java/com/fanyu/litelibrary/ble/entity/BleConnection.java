@@ -235,7 +235,7 @@ public class BleConnection {
             callback.startToConnect();
         }
         // 重连
-//        if (mBluetoothGatt != null) {
+        if (mBluetoothGatt != null) {
 //            LogUtil.i(TAG, "使用已存在的 mBluetoothGatt 进行重连");
 //
 //            if (isConnected){
@@ -250,7 +250,10 @@ public class BleConnection {
 //                LogUtil.i(TAG,"重连: mBluetoothGatt.connect()=false");
 //                return false;
 //            }
-//        }
+            mBluetoothGatt.disconnect();
+            mBluetoothGatt.close();
+            mBluetoothGatt = null;
+        }
         //第一次连接
         final BluetoothDevice device = lite.ble().bluetoothAdapter().getRemoteDevice(this.device.getAddress());
         if (device == null) {
@@ -269,16 +272,6 @@ public class BleConnection {
         if (mBluetoothGatt != null) {
             mBluetoothGatt.disconnect();
         }
-    }
-
-    @TargetApi(18)
-    @RequiresPermission(Manifest.permission.BLUETOOTH)
-    public void reConnect(){
-        if (mBluetoothGatt!=null){
-            mBluetoothGatt.disconnect();
-            mBluetoothGatt.close();
-        }
-        connect();
     }
 
     @TargetApi(18)

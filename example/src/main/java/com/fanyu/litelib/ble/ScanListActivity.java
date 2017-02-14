@@ -46,11 +46,12 @@ public class ScanListActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     final BluetoothDevice device = leDeviceListAdapter.getDevice(position);
                     if (device == null) return;
-                    if (BleConnection.getConnection(device,lite.ble().connections())==null){
-                        lite.ble().connect(device);
-                    }else {
-                        BleConnection.getConnection(device,lite.ble().connections()).reConnect();
-                    }
+                    lite.ble().connect(device);
+//                    if (BleConnection.getConnection(device,lite.ble().connections())==null){
+//                        lite.ble().connect(device);
+//                    }else {
+//                        BleConnection.getConnection(device,lite.ble().connections()).reConnect();
+//                    }
 //                    final Intent intent = new Intent(BluetoothListActivity.this, MainActivity.class);
 //                    intent.putExtra(MainActivity.EXTRAS_DEVICE_NAME, device.getName());
 //                    intent.putExtra(MainActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());

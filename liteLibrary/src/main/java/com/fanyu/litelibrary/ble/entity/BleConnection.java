@@ -101,7 +101,7 @@ public class BleConnection {
                                                 BluetoothGattCharacteristic characteristic){
                 super.onCharacteristicChanged(gatt, characteristic);
                 if (callback!=null) callback.onCharacteristicChanged(gatt,characteristic);
-                LogUtil.i(TAG,"onCharacteristicChanged");
+                LogUtil.i(TAG,"onCharacteristicChanged: "+characteristic.getUuid().toString());
             }
 
             @Override

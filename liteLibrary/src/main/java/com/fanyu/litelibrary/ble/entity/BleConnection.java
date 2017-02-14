@@ -317,6 +317,14 @@ public class BleConnection {
         }else {
             LogUtil.i(TAG, "setNotifications失败: " + characteristic.getUuid().toString());
         }
+
+        //设置Descriptors
+        List<BluetoothGattDescriptor> gattDescriptors = characteristic.getDescriptors();
+        for (BluetoothGattDescriptor gattDescriptor : gattDescriptors) {
+            int descPermission = gattDescriptor.getPermissions();
+            gattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+            mBluetoothGatt.writeDescriptor(gattDescriptor);
+        }
         return status;
     }
 

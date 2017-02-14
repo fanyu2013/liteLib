@@ -285,12 +285,23 @@ public class BleConnection {
             return false;
         }
         boolean status = mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+        if (status) {
+            LogUtil.i(TAG, "setNotifications成功: " + characteristic.getUuid().toString());
+        }else {
+            LogUtil.i(TAG, "setNotifications失败: " + characteristic.getUuid().toString());
+        }
         return status;
     }
 
     @TargetApi(18)
-    protected void writeDescriptor(BluetoothGattDescriptor desc) {
-        mBluetoothGatt.writeDescriptor(desc);
+    public boolean writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+        boolean status = mBluetoothGatt.writeCharacteristic(characteristic);
+        if (status){
+            LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
+        }else {
+            LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
+        }
+        return status;
     }
 
 }

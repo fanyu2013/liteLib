@@ -68,7 +68,6 @@ public class BleConnection {
                     isConnected = false;
                     LogUtil.i(TAG,"断开连接: "+device.getName()+" "+device.getAddress());
                     if (callback!=null) callback.disConnected();
-                    lite.ble().scan(true);
                 }
             }
 
@@ -92,7 +91,6 @@ public class BleConnection {
                                              int status) {
                 super.onCharacteristicRead(gatt, characteristic, status);
                 if (callback!=null) callback.onCharacteristicRead(gatt,characteristic,status);
-                LogUtil.i(TAG, "onCharacteristicRead");
 
             }
 
@@ -101,7 +99,6 @@ public class BleConnection {
                                                 BluetoothGattCharacteristic characteristic){
                 super.onCharacteristicChanged(gatt, characteristic);
                 if (callback!=null) callback.onCharacteristicChanged(gatt,characteristic);
-                LogUtil.i(TAG,"onCharacteristicChanged: "+characteristic.getUuid().toString());
             }
 
             @Override
@@ -109,22 +106,12 @@ public class BleConnection {
                                               BluetoothGattCharacteristic characteristic, int status) {
                 super.onCharacteristicWrite(gatt, characteristic, status);
                 if (callback!=null) callback.onCharacteristicWrite(gatt, characteristic, status);
-                if (status == BluetoothGatt.GATT_SUCCESS){
-                    LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
-                }else {
-                    LogUtil.i(TAG,"write失败-"+characteristic.getUuid().toString());
-                }
             }
 
             @Override
             public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
                 super.onDescriptorWrite(gatt, descriptor, status);
                 if (callback!=null) callback.onDescriptorWrite(gatt, descriptor, status);
-                if (status == BluetoothGatt.GATT_SUCCESS){
-                    LogUtil.i(TAG,"descriptorWrite成功-"+descriptor.getUuid().toString());
-                }else {
-                    LogUtil.i(TAG,"descriptorWrite失败-"+descriptor.getUuid().toString());
-                }
             }
         };
     }

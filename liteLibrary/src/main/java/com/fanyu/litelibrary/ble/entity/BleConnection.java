@@ -100,6 +100,15 @@ public class BleConnection {
                 LogUtil.i(TAG,"onCharacteristicChanged");
             }
 
+            @Override
+            public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+                super.onCharacteristicWrite(gatt, characteristic, status);
+                if (status == BluetoothGatt.GATT_SUCCESS){
+                    LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
+                }else {
+                    LogUtil.i(TAG,"write失败-"+characteristic.getUuid().toString());
+                }
+            }
         };
     }
 
@@ -169,6 +178,7 @@ public class BleConnection {
                     gattDescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
                     mBluetoothGatt.writeDescriptor(gattDescriptor);
                 }
+
             }
         }
     }
@@ -295,13 +305,7 @@ public class BleConnection {
 
     @TargetApi(18)
     public boolean writeCharacteristic(BluetoothGattCharacteristic characteristic) {
-        boolean status = mBluetoothGatt.writeCharacteristic(characteristic);
-        if (status){
-            LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
-        }else {
-            LogUtil.i(TAG,"write成功-"+characteristic.getUuid().toString());
-        }
-        return status;
+        return mBluetoothGatt.writeCharacteristic(characteristic);
     }
 
 }

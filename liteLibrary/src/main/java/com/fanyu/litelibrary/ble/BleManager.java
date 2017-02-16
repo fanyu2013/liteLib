@@ -153,6 +153,20 @@ public class BleManager implements BleManager_I {
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH)
+    public BleConnection createConnection(BluetoothDevice device) {
+        BleConnection connection;
+        if (BleConnection.contains(device,connections)){
+            connection = BleConnection.getConnection(device,connections);
+        }else {
+            connection = new BleConnection(device);
+            connections.add(connection);
+            EventBus.getDefault().post(new ConnectionNewEvent(device));
+        }
+        return connection;
+    }
+
+    @Override
     public List<BleConnection> connections() {
         return connections;
     }

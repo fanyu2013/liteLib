@@ -19,5 +19,6 @@ public interface BleManager_I {
     ScannedDevices scannedDevices();
     BluetoothAdapter bluetoothAdapter();
     boolean connect(BluetoothDevice device);
+    BleConnection createConnection(BluetoothDevice device);
     List<BleConnection> connections();
 }

@@ -25,7 +25,7 @@ public class ScannedDevices {
             bLeDevices.add(device);
             LogUtil.i("我的蓝牙-ScannedDevices-->发现设备",device.getName()+"---"+device.getAddress()+
                     "---- 共"+bLeDevices.size()+"个");
-            EventBus.getDefault().post(new FindDeviceEvent());
+            EventBus.getDefault().post(new FindDeviceEvent(device));
         }
     }
 

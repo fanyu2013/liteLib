@@ -21,4 +21,5 @@ public interface BleManager_I {
     boolean connect(BluetoothDevice device);
     BleConnection createConnection(BluetoothDevice device);
     List<BleConnection> connections();
+    void removeConnection(BleConnection bleConnection);
 }

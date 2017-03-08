@@ -170,4 +170,9 @@ public class BleManager implements BleManager_I {
     public List<BleConnection> connections() {
         return connections;
     }
+
+    @Override
+    public void removeConnection(BleConnection bleConnection) {
+        connections.remove(bleConnection);
+    }
 }

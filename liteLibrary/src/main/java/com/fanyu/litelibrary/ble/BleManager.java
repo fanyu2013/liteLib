@@ -165,6 +165,7 @@ public class BleManager implements BleManager_I {
 
     @Override
     public void removeConnection(BleConnection bleConnection) {
+        bleConnection.clearConnection();
         connections.remove(bleConnection);
     }
 }

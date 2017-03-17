@@ -275,6 +275,12 @@ public class BleConnection {
     }
 
     @TargetApi(18)
+    public void clearConnection(){
+        mBluetoothGatt.disconnect();
+        mBluetoothGatt.close();
+    }
+
+    @TargetApi(18)
     public BluetoothGattCharacteristic getCharacter(String serviceUUID,String charUUID){
         BluetoothGattService service = mBluetoothGatt.getService(
                 UUID.fromString(serviceUUID));

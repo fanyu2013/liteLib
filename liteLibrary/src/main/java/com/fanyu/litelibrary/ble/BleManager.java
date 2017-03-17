@@ -109,16 +109,8 @@ public class BleManager implements BleManager_I {
     @RequiresPermission(Manifest.permission.BLUETOOTH_ADMIN)
     public void scan(boolean enable) {
         if (enable) {
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
             LogUtil.i(TAG,"开始扫描");
-            // Stops scanning after a pre-defined scan period.
-            mHandler.postDelayed(new Runnable() {
-
-                @RequiresPermission(Manifest.permission.BLUETOOTH_ADMIN)
-                public void run() {
-                    isScanning = false;
-                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                }
-            }, 100000);
             isScanning = true;
             mBluetoothAdapter.startLeScan(mLeScanCallback);
         } else {
